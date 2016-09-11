@@ -1,0 +1,29 @@
+{
+  "name": "tarabaas-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-babel": "./node_modules/.bin/babel ./lib/tarabaas.js --out-dir build/development",
+    "build-webpack-development": "NODE_ENV=development ./node_modules/.bin/webpack --color --progress",
+    "build-webpack-production": "NODE_ENV=production ./node_modules/.bin/webpack --color --progress",
+    "test": "./node_modules/.bin/jest --verbose"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.14.0",
+    "babel-jest": "^15.0.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.14.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^15.1.1",
+    "jest-cli": "^15.1.1",
+    "webpack": "^1.13.2"
+  }
+}
