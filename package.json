@@ -2,7 +2,7 @@
   "name": "tarabaas-js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./build/production/index.js",
   "scripts": {
     "build-babel": "./node_modules/.bin/babel ./lib/tarabaas.js --out-dir build/development",
     "build-webpack-development": "NODE_ENV=development ./node_modules/.bin/webpack --color --progress",
