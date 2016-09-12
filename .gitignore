@@ -2,6 +2,5 @@
 node_modules
 npm-debug.log
 var
-build/
 *.map
 **/*.bak

@@ -3,6 +3,7 @@ const config = {
     index: './lib/tarabaas.js'
   },
   output: {
+    libraryTarget: 'umd',
     filename: '[name].js'
   },
   resolve: {

@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -58,38 +68,22 @@
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
+	var _request = __webpack_require__(3);
+
+	var _settings = __webpack_require__(4);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var instance = null;
 
 	function init() {
-	  var config = arguments.length <= 0 || arguments[0] === undefined ? {
-	    serverURL: 'https://tarabaas.com'
-	  } : arguments[0];
+	  var settings = arguments.length <= 0 || arguments[0] === undefined ? _settings.DEFAULT_OPTIONS : arguments[0];
 
-
-	  var BASE_URL = config.serverURL + '/api';
+	  var BASE_URL = settings.serverURL + '/api';
 
 	  if (!!instance) {
 	    return instance;
 	  }
-
-	  var createRequest = function createRequest(state) {
-	    return {
-	      commit: function commit() {
-	        var url = state.url;
-	        var _state$params = state.params;
-	        var params = _state$params === undefined ? {} : _state$params;
-
-	        return (0, _isomorphicFetch2.default)(url, params).then(function (r) {
-	          return r.json();
-	        });
-	      },
-	      payload: function payload() {
-	        return state;
-	      }
-	    };
-	  };
 
 	  instance = {
 	    projects: function projects() {
@@ -100,7 +94,7 @@
 	      return {
 	        // GET https://tarabaas.com/api/projects/
 	        all: function all() {
-	          return createRequest(state);
+	          return (0, _request.createRequest)(state);
 	        },
 
 
@@ -110,7 +104,7 @@
 	            url: state.url + '/' + uuid
 	          });
 
-	          return _extends({}, createRequest(state), {
+	          return _extends({}, (0, _request.createRequest)(state), {
 	            databases: function databases() {
 	              state = _extends({}, state, {
 	                url: state.url + '/databases'
@@ -119,13 +113,13 @@
 	              return {
 	                // GET https://tarabaas.com/api/projects/<project_uuid>/databases
 	                all: function all() {
-	                  return createRequest(state);
+	                  return (0, _request.createRequest)(state);
 	                },
 
 
 	                // GET https://tarabaas.com/api/projects/<project_uuid>/databases/<database_name>
 	                get: function get(name) {
-	                  return createRequest(_extends({}, state, {
+	                  return (0, _request.createRequest)(_extends({}, state, {
 	                    url: state.url + '/' + name
 	                  }));
 	                },
@@ -136,7 +130,7 @@
 	                create: function create() {
 	                  var payload = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-	                  return createRequest(_extends({}, state, {
+	                  return (0, _request.createRequest)(_extends({}, state, {
 	                    params: {
 	                      method: 'POST',
 	                      mode: 'cors',
@@ -145,7 +139,7 @@
 	                  }));
 	                },
 	                destroy: function destroy(name) {
-	                  return createRequest(_extends({}, state, {
+	                  return (0, _request.createRequest)(_extends({}, state, {
 	                    url: state.url + '/' + name,
 	                    params: {
 	                      method: 'DELETE',
@@ -163,7 +157,7 @@
 	        create: function create() {
 	          var payload = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-	          return createRequest(_extends({}, state, {
+	          return (0, _request.createRequest)(_extends({}, state, {
 	            params: {
 	              method: 'POST',
 	              body: JSON.stringify({ name: payload.name })
@@ -174,7 +168,7 @@
 
 	        // DELETE https://tarabaas.com/api/projects/<project_uuid>
 	        destroy: function destroy(uuid) {
-	          return createRequest(_extends({}, state, {
+	          return (0, _request.createRequest)(_extends({}, state, {
 	            url: state.url + '/' + uuid,
 	            params: {
 	              method: 'DELETE',
@@ -640,5 +634,47 @@
 	})(typeof self !== 'undefined' ? self : this);
 
 
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.createRequest = createRequest;
+	function createRequest(state) {
+	  return {
+	    commit: function commit() {
+	      var url = state.url;
+	      var _state$params = state.params;
+	      var params = _state$params === undefined ? {} : _state$params;
+
+	      return fetch(url, params).then(function (r) {
+	        return r.json();
+	      });
+	    },
+	    payload: function payload() {
+	      return state;
+	    }
+	  };
+	};
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var DEFAULT_OPTIONS = exports.DEFAULT_OPTIONS = {
+	  serverURL: 'https://tarabaas.com'
+	};
+
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;
