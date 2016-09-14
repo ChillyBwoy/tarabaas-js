@@ -1,10 +1,13 @@
 const config = {
+  debug: true,
+  devtool: 'inline-source-map',
   entry: {
-    index: './lib/tarabaas.js'
+    tarabaas: './lib/tarabaas.js'
   },
   output: {
     libraryTarget: 'umd',
-    filename: '[name].js'
+    filename: '[name].js',
+    path: './build'
   },
   resolve: {
     extensions: ['', '.js']
@@ -22,17 +25,5 @@ const config = {
     ]
   }
 };
-
-switch (process.env.NODE_ENV) {
-  case 'development':
-    config.debug = true;
-    config.devtool = 'inline-source-map';
-    config.output.path = './build/development';
-    break;
-
-  case 'production':
-    config.output.path = './build/production';
-    break;
-}
 
 module.exports = config;
