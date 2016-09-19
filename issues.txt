@@ -3,7 +3,7 @@
     GET https://tarabaas.com/api/projects/<project_uuid>/collections/<collection_name>
 
   add item to collection:
-    POST https://tarabaas.com/api/clients/projects/<project_uuid>/collections/<db_name>
+    POST https://tarabaas.com/api/clients/projects/<project_uuid>/collections/<collection_name>
 
   иными словами 'api/projects' и 'api/clients/projects' вводит в ступор
 
