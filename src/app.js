@@ -11,7 +11,7 @@ const api = tarabaas.init({
 //       .commit()
 //         .then(project => {
 //           return project
-//             .database()
+//             .collection()
 //               .create('todos')
 //                 .addField({
 //                   type: 'string',
@@ -24,8 +24,8 @@ const api = tarabaas.init({
 //                 })
 //                 .commit();
 //         })
-//         .then(database => {
-//           return database
+//         .then(collection => {
+//           return collection
 //             .add({text: 'first'})
 //             .add({text: 'second'})
 //             .add({text: 'thirds'})
@@ -39,19 +39,19 @@ const api = tarabaas.init({
 //
 // api
 //   .project('TodoTarabaas')
-//     .database('todos')
+//     .collection('todos')
 //       .getAll()
 //
 // api
 //   .project('TodoTarabaas')
-//     .database('todos')
+//     .collection('todos')
 //       .get(id)
 //         .delete()
 //           .commit();
 //
 // api
 //   .project('TodoTarabaas')
-//     .database('todos')
+//     .collection('todos')
 //       .find({or: [{eq: {name: 'Test'}}, {'eq': {email: 'test@example.com'}})
 //         .commit()
 //           .then(items => {

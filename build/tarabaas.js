@@ -107,16 +107,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	
 	  var projectsGet = function projectsGet(uuid) {
-	    var databasesURL = URL_PROJECTS + '/' + uuid + '/databases';
+	    var collectionsURL = URL_PROJECTS + '/' + uuid + '/collections';
 	
-	    var databasesAll = function databasesAll() {
-	      return (0, _request.createRequest)({ url: databasesURL });
+	    var collectionsAll = function collectionsAll() {
+	      return (0, _request.createRequest)({ url: collectionsURL });
 	    };
 	
-	    var databasesCreate = function databasesCreate() {
+	    var collectionsCreate = function collectionsCreate() {
 	      var payload = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	      return (0, _request.createRequest)({
-	        url: databasesURL,
+	        url: collectionsURL,
 	        params: {
 	          method: 'POST',
 	          mode: 'cors',
@@ -125,9 +125,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    };
 	
-	    var databasesDestroy = function databasesDestroy(name) {
+	    var collectionsDestroy = function collectionsDestroy(name) {
 	      return (0, _request.createRequest)({
-	        url: databasesURL + '/' + name,
+	        url: collectionsURL + '/' + name,
 	        params: {
 	          method: 'DELETE',
 	          mode: 'cors'
@@ -136,13 +136,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	
 	    return _extends({}, (0, _request.createRequest)({ url: URL_PROJECTS + '/' + uuid }), {
-	      databases: function databases() {
-	        var itemsURL = URL_BASE + '/clients/projects/' + uuid + '/databases';
+	      collections: function collections() {
+	        var itemsURL = URL_BASE + '/clients/projects/' + uuid + '/collections';
 	
 	        return {
-	          all: databasesAll,
+	          all: collectionsAll,
 	          get: function get(name) {
-	            return _extends({}, (0, _request.createRequest)({ url: databasesURL + '/' + name }), {
+	            return _extends({}, (0, _request.createRequest)({ url: collectionsURL + '/' + name }), {
 	              listItems: function listItems() {
 	                return (0, _request.createRequest)({ url: itemsURL + '/' + name });
 	              },
@@ -178,8 +178,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	              }
 	            });
 	          },
-	          create: databasesCreate,
-	          destroy: databasesDestroy
+	          create: collectionsCreate,
+	          destroy: collectionsDestroy
 	        };
 	      }
 	    });
